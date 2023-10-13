@@ -7,7 +7,7 @@
 v1:  	.byte   -2, 6, -3, 1, 9, 1, -3, 6, -2
 v2:  	.byte   4, 7, -10, 3, 11, 9, 7, 6, 4, 7
 v3:  	.byte   8, 2, 5, -1, -4, -1, 5, 2, 9
-; Flags are inizialized to zero by default
+; Variables are inizialized to zero by default
 fl1: 	.space 1
 fl2: 	.space 1
 fl3: 	.space 1
@@ -16,15 +16,15 @@ v4:  	.space 9
     .text
 MAIN:
         ; Inizialize pointer registers
-        ;daddi R1,R0,0    ; R1 = 0  POINTER REG LEFT
-        daddi R2,R0,8    ; R2 = 8  POINTER REG RIGHT
+        daddi R1,R0,0           ; R1 = 0  POINTER REG LEFT
+        daddi R2,R0,8           ; R2 = 8  POINTER REG RIGHT
         ; Inizialize temp registers
-        ;daddi R3,R0,0    ; R3 = 0  TEMP REG 1
-        ;daddi R4,R0,0    ; R4 = 0  TEMP REG 2
+        daddi R3,R0,0           ; R3 = 0  TEMP REG 1
+        daddi R4,R0,0           ; R4 = 0  TEMP REG 2
         ; Inizialize flag registers
-        ;daddi R5,R0,0    ; R5 = 0  FLAG_1 REG
-        ;daddi R6,R0,0    ; R6 = 0  FLAG_2 REG
-        ;daddi R7,R0,0    ; R7 = 0  FLAG_3 REG
+        daddi R5,R0,0           ; R5 = 0  FLAG_1 REG
+        daddi R6,R0,0           ; R6 = 0  FLAG_2 REG
+        daddi R7,R0,0           ; R7 = 0  FLAG_3 REG
 
 ;-------------------------------------------
 ; POINT 1: Check if arrays are palindrome
