@@ -48,7 +48,6 @@ v7:     .space  512
 MAIN:
     daddi R1,R0,0       ; COUNTER REG
     daddi R2,R0,64      ; MAX RANGE
-    daddi R3,R0,0       ; POINTER REG
 
 LOOP:
     ; Load values
