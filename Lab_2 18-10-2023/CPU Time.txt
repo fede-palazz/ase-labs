@@ -1,0 +1,7 @@
+INT:     2 + 2*64           (1 CPI)
+LD/SD:   (4+3)*64           (1 CPI)
+BRANCH:  1*64               (1 CPI)
+FP ADD:  4*64               (3 CPI)
+FP MUL:  2*64               (8 CPI)
+FP DIV:  1*64               (20 CPI)
+HALT:    1
