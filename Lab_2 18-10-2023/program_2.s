@@ -18,7 +18,7 @@ w:      .double 1,1,1,1,1
         .double 1,1,1,1,1
         .double 1,1,1,1,1
 
-b:      .double 171         
+b:      .word   0xAB    
 y:      .space  8
 
 
@@ -26,7 +26,8 @@ y:      .space  8
 MAIN:
     daddi R1,R0,0       ; COUNTER REG
     daddi R2,R0,30      ; MAX RANGE
-    l.d F8,b(R0)
+    ld R3,b(R0)         ; Load b from word
+    mtc1 R3, F10        ; Convert b to floating point value
 
 LOOP:
     ; Load values
@@ -41,16 +42,16 @@ LOOP:
     ; Check loop condition
     bnez R2,LOOP
     ; Add b
-    add.d F4,F4,F8      ; x += b
+    add.d F4,F4,F10     ; x += b
 
-CHECK_EXP:
-    mfc1 R6,F4          ; Move F4 into R6 register
+CHECK_NAN:
+    mfc1 R6,F4          ; Convert exponent to decimal
     dsll R6,R5,1        ; Shift left 1
     dsrl R6,R6,31       ; Shift right 31
-    dsrl R6,R6,23       ; Shift right 23
-    daddi R6,R6,-2047   ; Subtract the exponent
+    dsrl R6,R6,23       ; Shift right 22
+    daddi R6,R6,-2047   ; Subtract the desired exponent
     bne R6,R0,SAVE_Y    ; R6 != 0 => f(x) = x
-    add.d F4,F0,F0     ; R6 = 0  => f(x) = 0
+    add.d F4,F0,F0      ; R6 = 0  => f(x) = 0
 
 SAVE_Y:
     s.d F4, y(R0)
